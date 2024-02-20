@@ -11,8 +11,8 @@ const type = document.querySelector('.type');
 // const box5 = document.querySelector('#5');
 // const box6 = document.querySelector('#6');
 
-const guess = []; // stores what user types
-let word = '';
+let guess = []; // stores what user types
+let word = ''; // stores unscrambled word
 
 async function fetchWord() {
   try {
@@ -77,16 +77,27 @@ document.addEventListener('keydown', function (e) {
 });
 
 function checkGuess() {
-  let guessJoined = guess.join('');
-  console.log(guessJoined);
+  let guessString = guess.join('');
+  console.log(guessString);
 
-  if (guessJoined == word) {
+  if (guessString == word) {
     console.log('correct');
   } else {
     console.log('wrong');
   }
 }
 
+function resetAll() {
+  let inputs = document.querySelectorAll('input');
+  inputs.forEach((input) => {
+    input.value = '';
+  });
+  guess = [];
+}
+
 random.addEventListener('click', function () {
+  resetAll();
   fetchWord();
 });
+
+reset.addEventListener('click', resetAll);
