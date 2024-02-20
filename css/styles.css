@@ -1,0 +1,123 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #7429C6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.container {
+  background-color: #030616;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  border-radius: 20px;
+}
+.container h1 {
+  font-size: 1.6rem;
+  background: linear-gradient(90deg, rgb(116, 41, 198) 11%, rgb(201, 81, 231) 70%);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+.container .word-container {
+  margin-top: 15px;
+  background-color: #4A5567;
+  width: 80%;
+  border-radius: 6px;
+}
+.container .word-container p {
+  color: #97A3B6;
+  margin: 15px;
+  font-size: 2rem;
+  text-align: center;
+  letter-spacing: 1rem;
+}
+.container .tries-mistakes {
+  margin-top: 15px;
+  width: 100%;
+  color: #4A5567;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+.container .tries-mistakes .tries-circles {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.container .tries-mistakes .circles {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.container .tries-mistakes .circle {
+  background-color: #4A5567;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-left: 5px;
+}
+.container .tries-mistakes span {
+  font-size: 1.25rem;
+  color: #97A3B6;
+}
+.container .type {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.container .type .border {
+  margin-top: 40px;
+  border: 2px solid #4A5567;
+  outline: none;
+  border-radius: 10px;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0);
+  color: #97A3B6;
+  text-align: center;
+  font-size: 1.5rem;
+  font-family: inherit;
+}
+.container .buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+.container .buttons button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: none;
+  border-radius: 7px;
+  height: 35px;
+  width: auto;
+  margin-top: 60px;
+  margin-bottom: 30px;
+  color: #F2F5F9;
+  background-color: #C951E7;
+  font-size: 1rem;
+  padding: 20px 40px 25px 40px;
+  font-family: inherit;
+  box-shadow: inset 0rem -0.3rem #672171;
+  cursor: pointer;
+}
+.container .buttons button:active {
+  transform: translateY(4px);
+}/*# sourceMappingURL=styles.css.map */

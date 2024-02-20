@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/styles.css">
+    <title>Guess The Word</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Word Scramble</h1>
+        <div class="word-container">
+            <p class="scramble"></p>
+        </div>
+        <div class="tries-mistakes">
+            <div class="tries-circles">
+                <p class="tries">Tries (0/5):</p>
+                <div class="circles"><div class="circle"></div> <div class="circle"></div> <div class="circle"></div> <div class="circle"></div> <div class="circle"></div></div>
+            </div>
+            <p class="mistakes">Mistakes: <span>a, b</span></p>
+        </div>
+        <div class="type">
+            <input type="text" class="border box-1"  maxlength="1">
+            <input type="text" class="border box-2" maxlength="1">
+            <input type="text" class="border box-3" maxlength="1">
+            <input type="text" class="border box-4" maxlength="1">
+            <input type="text" class="border box-5" maxlength="1">
+            <input type="text" class="border box-6" maxlength="1">
+        </div>
+        <div class="buttons">
+            <button class="random">
+                Random
+            </button>
+            <button class="reset">
+                Reset
+            </button>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

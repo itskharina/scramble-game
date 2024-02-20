@@ -1,0 +1,135 @@
+@mixin flex($direction) {
+    display: flex;
+    flex-direction: $direction;
+    align-items: center;
+}
+
+$background: #7429C6;
+$container: #030616;
+$button: #C951E7;
+$words: #4A5567;
+$letters: #97A3B6;
+$shadow: #672171;
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: $background;
+    min-height: 100vh;
+    @include flex(row);
+    justify-content: center;
+    font-family: "Outfit", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.container {
+    background-color: $container;
+    @include flex(column);
+    justify-content: center;
+    width: 500px;
+    border-radius: 20px;
+
+    h1 {
+        font-size: 1.6rem;
+        background: linear-gradient(90deg, rgba(116,41,198,1) 11%, rgba(201,81,231,1) 70%);
+        -webkit-text-fill-color: transparent; // makes the whole gradient-background transparent 
+        -webkit-background-clip: text; // fills text with the gradient background
+    }
+    
+    .word-container {
+        margin-top: 15px;
+        background-color: $words;
+        width: 80%;
+        border-radius: 6px;
+
+        p {
+            color: $letters;
+            margin: 15px;
+            font-size: 2rem;
+            text-align: center;
+            letter-spacing: 1rem;
+        }
+    }
+
+    .tries-mistakes {
+        margin-top: 15px;
+        width: 100%;
+        color: $words;
+        font-size: 1rem;
+        @include flex(row);
+        justify-content: space-around;
+
+        .tries-circles {
+            @include flex(row);
+        }
+
+        .circles {
+            @include flex(row);
+        }
+ 
+        .circle {
+            background-color: $words;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-left: 5px;
+        }
+        
+        span {
+            font-size: 1.25rem;
+            color: $letters;
+        }
+    }
+
+    .type {
+        @include flex(row);
+        justify-content: center;
+        gap: 10px;
+
+        .border {
+            margin-top: 40px;
+            border: 2px solid $words;
+            outline: none;
+            border-radius: 10px;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255,255,255,0);
+            color: $letters;
+            text-align: center;
+            font-size: 1.5rem;
+            font-family: inherit;
+        }
+    }
+
+    .buttons {
+        @include flex(row);
+        justify-content: center;
+        gap: 30px;
+
+        button {
+            @include flex(row);
+            border: none;
+            border-radius: 7px;
+            height: 35px;
+            width: auto;
+            margin-top: 60px;
+            margin-bottom: 30px;
+            color: #F2F5F9;
+            background-color: $button;
+            font-size: 1rem;
+            padding: 20px 40px 25px 40px;
+            font-family: inherit;
+            box-shadow: inset 0rem -0.3rem $shadow;
+            cursor: pointer;
+
+            &:active {
+                transform: translateY(4px);
+
+            }
+        }
+    }
+
+}
