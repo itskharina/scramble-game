@@ -84,7 +84,7 @@ body {
         }
     }
 
-    .type {
+    .inputs {
         @include flex(row);
         justify-content: center;
         gap: 10px;
@@ -131,5 +131,8 @@ body {
             }
         }
     }
+}
 
+.purple {
+    background-color: $background;
 }

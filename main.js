@@ -1,18 +1,20 @@
 const tries = document.querySelector('.tries');
-const mistakes = document.querySelector('.mistakes');
+const mistakes = document.querySelector('.letters');
 const scramble = document.querySelector('.scramble');
 const random = document.querySelector('.random');
 const reset = document.querySelector('.reset');
-const type = document.querySelector('.type');
-// const box1 = document.querySelector('#1');
-// const box2 = document.querySelector('#2');
-// const box3 = document.querySelector('#3');
-// const box4 = document.querySelector('#4');
-// const box5 = document.querySelector('#5');
-// const box6 = document.querySelector('#6');
+const inputs = document.querySelector('.inputs');
+const circles = document.querySelectorAll('.circle');
+// const circle1 = document.querySelector('#circle-one');
+// const circle2 = document.querySelector('#circle-two');
+// const circle3 = document.querySelector('#circle-three');
+// const circle4 = document.querySelector('#circle-four');
+// const circle5 = document.querySelector('#circle-five');
 
-let guess = []; // stores what user types
+let guess = []; // stores what user inputs
 let word = ''; // stores unscrambled word
+let mistakesArr = [];
+let numberOfTries = 0;
 
 async function fetchWord() {
   try {
@@ -25,32 +27,32 @@ async function fetchWord() {
     }
 
     word = await response.json();
-    console.log(word);
-    scrambled(word.join(''));
+    console.log('word:', word);
+    scrambled(word);
     return word;
   } catch (error) {
     console.error('An error occured:', error);
   }
 }
 
-//scrambles word
-function scrambled(str) {
-  arr = str.split('');
-  for (let i = 0; i < arr.length - 1; i++) {
-    let j = Math.floor(Math.random() * arr.length);
-    let temp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = temp;
+// scrambles word
+function scrambled(word) {
+  let split = [...word[0]];
+  console.log('word split:', split);
+  for (let i = 0; i < split.length - 1; i++) {
+    let j = Math.floor(Math.random() * split.length);
+    let temp = split[i];
+    split[i] = split[j];
+    split[j] = temp;
   }
-  console.log(arr);
-  scramble.textContent = arr.join('');
-  return arr.join('');
+  console.log('scrambled:', split);
+  scramble.textContent = split.join('');
 }
 
 fetchWord();
 
 // adds letters to ui when typed
-type.addEventListener('input', function (e) {
+inputs.addEventListener('input', function (e) {
   const input = e.target;
 
   if (input.value) {
@@ -65,10 +67,14 @@ type.addEventListener('input', function (e) {
   }
 
   if (input.nextElementSibling == null) {
+    console.log('guess:', guess);
+    checkMistakes();
     checkGuess();
+    document.querySelector('input').focus(); // puts focus back on first input box
   }
 });
 
+// deletes letter when backspace/delete key is pressed
 document.addEventListener('keydown', function (e) {
   if (e.key === 'Backspace' || e.key === 'Del') {
     const index = e.target.dataset.index - 1;
@@ -76,6 +82,7 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+// checks to see if guess is correct
 function checkGuess() {
   let guessString = guess.join('');
   console.log(guessString);
@@ -85,6 +92,28 @@ function checkGuess() {
   } else {
     console.log('wrong');
   }
+
+  if (numberOfTries < circles.length) {
+    circles[numberOfTries].style.backgroundColor = '#7429c6';
+    numberOfTries++;
+    tries.textContent = `Tries (${numberOfTries}/5):`;
+  }
+  resetAll();
+}
+
+// function isGameOver() {
+//   if (numberOfTries === 5) {
+//     // add a game over modal with a restart button
+//   }
+// }
+
+function checkMistakes() {
+  let letters = guess.filter((letter) => {
+    return ![...word[0]].includes(letter);
+  });
+  mistakesArr.push(...letters); // push each individual letter to array
+  let filtered = [...new Set(mistakesArr)]; // removes duplicates
+  mistakes.textContent = filtered.join(', ');
 }
 
 function resetAll() {

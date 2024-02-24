@@ -73,14 +73,14 @@ body {
   font-size: 1.25rem;
   color: #97A3B6;
 }
-.container .type {
+.container .inputs {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 10px;
 }
-.container .type .border {
+.container .inputs .border {
   margin-top: 40px;
   border: 2px solid #4A5567;
   outline: none;
@@ -120,4 +120,8 @@ body {
 }
 .container .buttons button:active {
   transform: translateY(4px);
+}
+
+.purple {
+  background-color: #7429C6;
 }/*# sourceMappingURL=styles.css.map */
