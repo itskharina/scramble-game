@@ -54,6 +54,7 @@ inputs.addEventListener('input', function (e) {
   const lettersOnlyRegex = /^[a-z]+$/;
 
   if (!lettersOnlyRegex.test(input.value)) {
+    alert('Please enter a lowercase letter!');
     input.value = '';
     return;
   }
