@@ -1,5 +1,3 @@
-// make so it can only accept letters
-
 const tries = document.querySelector('.tries');
 const mistakes = document.querySelector('.letters');
 const scramble = document.querySelector('.scramble');
@@ -53,15 +51,19 @@ fetchWord();
 // adds letters to ui when typed
 inputs.addEventListener('input', function (e) {
   const input = e.target;
+  const lettersOnlyRegex = /^[a-z]+$/;
+
+  if (!lettersOnlyRegex.test(input.value)) {
+    input.value = '';
+    return;
+  }
 
   if (input.value) {
     guess.splice(input.dataset.index - 1, 1, input.value);
-  }
-
-  const next = input.nextElementSibling;
-
-  if (next && input.value) {
-    next.focus();
+    const next = input.nextElementSibling;
+    if (next) {
+      next.focus();
+    }
   }
 
   if (input.nextElementSibling == null) {
@@ -107,11 +109,11 @@ function isGameOver() {
     updateTries();
     showModal(modalContainer, 'Game Over!');
     img.src = './images/undraw_feeling_blue_-4-b7q.svg';
-    showWord.textContent = `The word was ${word}`;
+    showWord.textContent = `The word was '${word}'`;
   } else if (isGuessCorrect) {
     showModal(modalContainer, 'Congrats!');
-    showWord.textContent = `The word was ${word}`;
-    img.src = './images/undraw_celebrating_rtuv.svg';
+    showWord.textContent = `The word was '${word}'`;
+    img.src = './images/undraw_fans_re_cri3.svg';
   } else {
     updateTries();
   }
