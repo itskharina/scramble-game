@@ -1,44 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
     <title>Guess The Word</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h1>Word Scramble</h1>
-        <div class="word-container">
-            <p class="scramble"></p>
+      <h1>Word Scramble</h1>
+      <div class="word-container">
+        <p class="scramble"></p>
+      </div>
+      <div class="tries-mistakes">
+        <div class="tries-circles">
+          <p class="tries">Tries (0/5):</p>
+          <div class="circles">
+            <div class="circle" id="circle-one"></div>
+            <div class="circle" id="circle-two"></div>
+            <div class="circle" id="circle-three"></div>
+            <div class="circle" id="circle-four"></div>
+            <div class="circle" id="circle-five"></div>
+          </div>
         </div>
-        <div class="tries-mistakes">
-            <div class="tries-circles">
-                <p class="tries">Tries (0/5):</p>
-                <div class="circles"><div class="circle" id="circle-one"></div> <div class="circle" id="circle-two"></div> <div class="circle" id="circle-three"></div> <div class="circle" id="circle-four"></div> <div class="circle" id="circle-five"></div></div>
-            </div>
-            <p class="mistakes">Mistakes: <span class="letters"></span></p>
-        </div>
-        <div class="inputs">
-            <input type="text" class="border" data-index="1" maxlength="1">
-            <input type="text" class="border" data-index="2" maxlength="1">
-            <input type="text" class="border" data-index="3" maxlength="1">
-            <input type="text" class="border" data-index="4" maxlength="1">
-            <input type="text" class="border" data-index="5" maxlength="1">
-            <input type="text" class="border" data-index="6" maxlength="1">
-        </div>
-        <div class="buttons">
-            <button class="random">
-                Random
-            </button>
-            <button class="reset">
-                Reset
-            </button>
-        </div>
+        <p class="mistakes">Mistakes: <span class="letters"></span></p>
+      </div>
+      <div class="inputs">
+        <input type="text" class="border" data-index="1" maxlength="1" />
+        <input type="text" class="border" data-index="2" maxlength="1" />
+        <input type="text" class="border" data-index="3" maxlength="1" />
+        <input type="text" class="border" data-index="4" maxlength="1" />
+        <input type="text" class="border" data-index="5" maxlength="1" />
+        <input type="text" class="border" data-index="6" maxlength="1" />
+      </div>
+      <div class="buttons">
+        <button class="random">Random</button>
+        <button class="clear">Clear</button>
+      </div>
     </div>
     <script src="main.js"></script>
-</body>
+  </body>
 </html>

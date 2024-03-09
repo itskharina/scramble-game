@@ -136,3 +136,62 @@ body {
 .purple {
     background-color: $background;
 }
+
+
+.modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    @include flex(row);
+    justify-content: center;
+    
+}
+
+.hidden {
+    display: none;
+}
+
+.modal {
+    text-align: center;
+    width: 10%;
+    min-width: 320px;
+    height: 320px;
+    background-color: #333438;
+    color: rgb(207, 204, 204);
+    border-radius: 10px;
+    padding: 4px;
+    @include flex(column);
+    justify-content: space-around;
+
+    img {
+        width: 150px;
+        height: 150px;
+    }
+
+    h2 {
+        margin: 10px 0;
+        font-size: 1.8rem;
+    }
+
+    p {
+        font-size: 1.3rem;
+        font-weight: 500;
+        margin: 10px 0;       
+    }
+}
+
+button {
+    font-family: inherit;
+    border: 0;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    background-color: white;  
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    color: rgb(110, 108, 108);
+    cursor: pointer;
+    margin: 10px 0;  
+}

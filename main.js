@@ -1,20 +1,19 @@
+// make so it can only accept letters
+
 const tries = document.querySelector('.tries');
 const mistakes = document.querySelector('.letters');
 const scramble = document.querySelector('.scramble');
 const random = document.querySelector('.random');
-const reset = document.querySelector('.reset');
+const clear = document.querySelector('.clear');
 const inputs = document.querySelector('.inputs');
 const circles = document.querySelectorAll('.circle');
-// const circle1 = document.querySelector('#circle-one');
-// const circle2 = document.querySelector('#circle-two');
-// const circle3 = document.querySelector('#circle-three');
-// const circle4 = document.querySelector('#circle-four');
-// const circle5 = document.querySelector('#circle-five');
 
 let guess = []; // stores what user inputs
 let word = ''; // stores unscrambled word
-let mistakesArr = [];
+let mistakesArr = []; // stores incorrect letters that user guesses
+let guessString = '';
 let numberOfTries = 0;
+let isGuessCorrect = false;
 
 async function fetchWord() {
   try {
@@ -60,14 +59,12 @@ inputs.addEventListener('input', function (e) {
   }
 
   const next = input.nextElementSibling;
-  console.log(guess);
 
   if (next && input.value) {
     next.focus();
   }
 
   if (input.nextElementSibling == null) {
-    console.log('guess:', guess);
     checkMistakes();
     checkGuess();
     document.querySelector('input').focus(); // puts focus back on first input box
@@ -84,28 +81,87 @@ document.addEventListener('keydown', function (e) {
 
 // checks to see if guess is correct
 function checkGuess() {
-  let guessString = guess.join('');
-  console.log(guessString);
+  guessString = guess.join('');
 
   if (guessString == word) {
-    console.log('correct');
+    isGuessCorrect = true;
+    // console.log('correct');
+    isGameOver();
   } else {
-    console.log('wrong');
+    // console.log('wrong');
+    isGameOver();
+  }
+  resetInput();
+}
+
+function isGameOver() {
+  let modalContainer = document.querySelector('.modal-container');
+  if (!modalContainer) {
+    modalContainer = createModalContainer();
   }
 
-  if (numberOfTries < circles.length) {
+  const showWord = modalContainer.querySelector('.show-word');
+  const img = document.querySelector('img');
+
+  if (numberOfTries >= 4) {
+    updateTries();
+    showModal(modalContainer, 'Game Over!');
+    img.src = './images/undraw_feeling_blue_-4-b7q.svg';
+    showWord.textContent = `The word was ${word}`;
+  } else if (isGuessCorrect) {
+    showModal(modalContainer, 'Congrats!');
+    showWord.textContent = `The word was ${word}`;
+    img.src = './images/undraw_celebrating_rtuv.svg';
+  } else {
+    updateTries();
+  }
+}
+
+function showModal(modalContainer, message) {
+  modalContainer.classList.remove('hidden');
+  const h2 = modalContainer.querySelector('h2');
+  h2.textContent = message;
+}
+
+function updateTries() {
+  if (numberOfTries <= circles.length) {
     circles[numberOfTries].style.backgroundColor = '#7429c6';
     numberOfTries++;
     tries.textContent = `Tries (${numberOfTries}/5):`;
   }
-  resetAll();
 }
 
-// function isGameOver() {
-//   if (numberOfTries === 5) {
-//     // add a game over modal with a restart button
-//   }
-// }
+function createModalContainer() {
+  const modalContainer = document.createElement('div');
+  modalContainer.classList.add('modal-container', 'hidden');
+
+  const modal = document.createElement('div');
+  modal.className = 'modal';
+
+  const h2 = document.createElement('h2');
+
+  const img = document.createElement('img');
+
+  const showWord = document.createElement('p');
+  showWord.className = 'show-word';
+
+  const restartBtn = document.createElement('button');
+  restartBtn.className = 'restart';
+  restartBtn.textContent = 'Restart';
+  restartBtn.addEventListener('click', function () {
+    isGuessCorrect = false;
+    modalContainer.classList.add('hidden');
+    resetGame();
+  });
+
+  modal.append(h2, img, showWord, restartBtn);
+
+  modalContainer.append(modal);
+
+  document.body.appendChild(modalContainer);
+
+  return modalContainer;
+}
 
 function checkMistakes() {
   let letters = guess.filter((letter) => {
@@ -116,7 +172,7 @@ function checkMistakes() {
   mistakes.textContent = filtered.join(', ');
 }
 
-function resetAll() {
+function resetInput() {
   let inputs = document.querySelectorAll('input');
   inputs.forEach((input) => {
     input.value = '';
@@ -124,9 +180,18 @@ function resetAll() {
   guess = [];
 }
 
-random.addEventListener('click', function () {
-  resetAll();
-  fetchWord();
-});
+function resetGame() {
+  circles.forEach((circle) => {
+    circle.style.backgroundColor = '#4A5567';
+  });
+  numberOfTries = 0;
+  tries.textContent = 'Tries (0/5):';
 
-reset.addEventListener('click', resetAll);
+  mistakes.textContent = '';
+  mistakesArr = [];
+  resetInput();
+  fetchWord();
+}
+
+random.addEventListener('click', resetGame);
+clear.addEventListener('click', resetInput);
